@@ -1,0 +1,30 @@
+best concept;
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    
+    vector<int> arr(1000001,0);   //array er size full kore appearance gulo number e store korlam......
+    int size;
+    cin>>size;
+    
+    for(int i=0;i<size;i++){
+        
+        int ele;
+        cin>>ele;
+        arr[ele] = i+1;
+    }
+    
+    int q;
+    cin>>q;
+   long long int sum1=0,sum2=0;
+    for(int i=0;i<q;i++){
+        
+        int ele;
+        cin>>ele;
+        sum1 += arr[ele];
+        sum2 += size-arr[ele]+1;
+    }
+    cout<<sum1<<" "<<sum2<<"\n";
+    return 0;
+}
