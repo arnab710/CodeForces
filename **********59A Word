@@ -1,0 +1,37 @@
+//Asci Number Approach
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+    
+    string s;
+    cin>>s;
+    int n = s.length();
+    int L=0;
+    int l =0;
+    for(auto &it:s){
+        if(it<=90){
+            L++;
+        }
+        else{
+            l++;
+        }
+    }
+    if(L>l){
+    for(int i=0;i<n;i++){
+        
+        if(s[i]>=97){
+        s[i] = s[i]-32; // for transforming small to capital
+    }}}
+    else{
+        
+        for(int i=0;i<n;i++){
+            
+            if(s[i]<=90){
+            s[i] = s[i]+32; // for transforming capital to small
+        }}
+    }
+    cout<<s<<"\n";
+    return 0;
+    
+}
