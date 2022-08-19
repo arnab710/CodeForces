@@ -1,0 +1,30 @@
+//Based on ***********Sieve of Eretosthenes 
+//I am checking how many non prime numbers are there ..then I am subtracting to get primes.
+
+class Solution {
+public:
+    int countPrimes(int n) {
+        vector<int> check(n,1);
+        
+        if(n>=2){
+            check[0] = 0;
+            check[1] = 0;
+        }
+        int count = 2;
+      for(int i=2;i*i<n;i++){
+            
+          if(check[i]){
+              
+              for(int j =i*i;j<n;j+=i){
+                  
+                  if(check[j]) count++;
+                  check[j] = 0;
+        
+              }
+          }
+}
+       // cout<<count<<" ";
+        if(n-count<0) return 0;
+        else return n-count;
+    }
+};
