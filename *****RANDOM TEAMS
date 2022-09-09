@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+unsigned long long int maxi(long long int n,long long int m){
+    return (((n-m)*(n-m+1))/2);
+}
+ 
+unsigned long long int mini(long long int n,long long int m){
+   unsigned long long int val = 0;
+    while(n%m!=0){    
+        unsigned long long int divi = n/m;
+        val += (((divi-1)*divi)/2);
+        n -= divi;
+        m--;
+    }
+   unsigned long long int divi = n/m;
+    val += (m*(((divi-1)*divi)/2));
+    return val;}
+ 
+int main(){
+ 
+   long long int n,m;
+    cin>>n>>m;
+    cout<<mini(n,m);
+    cout<<"\n";
+    cout<<maxi(n,m);
+    return 0;
+}
