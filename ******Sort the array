@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+void solver(vector<int> nums,int &n,bool &flag,int &count,int &first,int &second){
+    for(int i=1;i<n;i++){
+        
+        if(nums[i]<nums[i-1]){
+            count++;
+            if(count==2){
+             flag = false;   
+            break;}
+            first = i;
+            while(i<n and nums[i]<=nums[i-1])   i++;
+            second = i;
+            swap(nums[first-1],nums[second-1]);
+            if((first-2)>=0){
+               
+               if(nums[first-2]>nums[first-1]) {
+                   flag = false;
+                   break;
+               }
+            }
+            i--;
+        }
+    }
+    return;
+}
+int main(){
+    
+    int n;
+    cin>>n;
+    vector<int> nums(n);
+    for(auto &it:nums) cin>>it;
+    bool flag = true;
+    int count = 0;
+    int first = -1;
+    int second = -1;
+    solver(nums,n,flag,count,first,second);
+    
+    if(flag == false) cout<<"no";
+    else if(count==0) cout<<"yes"<<"\n"<<1<<" "<<1;
+    else cout<<"yes"<<"\n"<<first<<" "<<second;
+    return 0;
+}
