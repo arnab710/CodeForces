@@ -1,0 +1,69 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+static bool comp(pair<char,int>&a ,pair<char,int>&b){
+    
+        if(a.first>b.first) return false;
+        if(a.first==b.first){
+            if(a.second<b.second) return false;
+        }
+        return true;
+}
+void solver(string &s){
+    
+    int n = s.size();
+    char f = s[0]; 
+    char l = s[n-1];
+    vector<pair<char,int>> v;
+    
+    for(int i = 0;i<n;i++){
+        v.push_back({s[i],i+1});
+    }
+ 
+    if(s[0]<=s[n-1])
+    sort(v.begin(),v.end());
+    else{
+    sort(v.begin(),v.end(),comp);
+    reverse(v.begin(),v.end());}
+    
+  // for(auto &it:v) cout<<it.first<<" "<<it.second<<endl;
+    int i = 0;
+    while(v[i].first!=f)    i++;
+    int j = i+1;
+    while(j<v.size() and v[j].first!=l)    j++;
+    
+    while(j<v.size() and v[j].first==l) j++;
+    j--;
+    
+    unsigned long long int cost = 0;
+    int count =1;
+    vector<int> step;
+    
+    step.push_back(v[i].second);
+    i++;
+    while(i<=j){
+        
+        count++;
+        cost += abs(v[i].first - v[i-1].first);
+        step.push_back(v[i].second);
+        i++;
+    }
+    
+    cout<<cost<<" "<<count<<"\n";
+    
+    for(auto &it:step) cout<<it<<" ";
+    cout<<"\n";
+    return;
+}
+int main(){
+    int tt;
+    cin>>tt;
+    
+    while(tt--){
+        
+        string s;
+        cin>>s;    
+        solver(s);
+    }
+    return 0;
+}
