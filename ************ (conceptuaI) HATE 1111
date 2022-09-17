@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solver(long long &n){
+    
+   long long int b = n%11 ;
+    long long int val = (n - (111*b));
+    
+    if(val>=0 && val%11==0) cout<<"yes";
+    else cout<<"no";
+    
+}
+
+int main(){
+    
+    int tt;
+    cin>>tt;
+    
+    while(tt--){
+        
+        long long n;
+        cin>>n;
+        solver(n);
+        cout<<"\n";
+    }
+    return 0;
+}
