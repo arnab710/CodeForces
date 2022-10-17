@@ -1,0 +1,86 @@
+#include<bits/stdc++.h>
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
+ 
+using namespace std;
+using namespace __gnu_pbds;
+ 
+#define ll  long long
+#define ull unsigned long long 
+#define ld long double 
+ 
+template<class T> using pbds =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update>;
+// *find_by_order, order_of_key
+ 
+ 
+ 
+// FOR GCD ///
+// ll gcd(ll a , ll b){
+//     if(b==0) return a;
+ 
+//     return gcd(b,(a%b));
+// }
+ 
+// //FOR LCM ///
+// ll lcm(ll a, ll b){
+    
+//    return ((a*b)/gcd(a,b));
+// }
+//////////////////////////
+ 
+ 
+ 
+ 
+ 
+void judge(){
+ 
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+}
+ 
+////////////////////////////////////code/////////////////////////////////////////////////////
+ 
+//const int mod = 1000000007;
+void helper(){
+        
+        ll n;
+        cin>>n;
+ 
+        vector<ll> a(n);
+        for(auto &it: a) cin>>it;
+ 
+        vector<ll> b(n);
+        for(auto &it: b) cin>>it;
+            vector<pair<ll,ll>> diff(n);
+ 
+        for(ll i = 0;i < n; i++) diff[i] = {(a[i] - b[i]),i};
+ 
+            pbds<pair<ll,ll>> ps;
+            ll ans = 0;
+        for(ll i=0;i<n;i++){
+ 
+           ll p =  ps.order_of_key({(-1)*diff[i].first,diff[i].second});
+           ans +=  (i - p);
+           ps.insert(diff[i]);
+        }
+ 
+        // for(auto &it: ps) cout<<it<<" ";
+ 
+   cout<<ans;
+    
+ }
+int main(){
+    judge();
+ 
+   //  int tt;
+   // cin>>tt;
+ 
+   // while(tt--){
+    helper();
+    cout<<"\n";
+//}
+    return 0;
+}
